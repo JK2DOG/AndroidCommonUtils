@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    /*日志*/
+    api 'com.github.zhaokaiqiang.klog:library:1.6.0'
+    /*文字、字号、颜色拼接*/
+    api 'com.zrq:spanbuilder:1.0.5'
+}
+
+publish {
+    userOrg = 'sunsethusky'             // Binary用户名
+    repoName = 'husky'          // Binary上的刚才新建的仓库名（Repository）
+    groupId = 'com.jk2dog.common'        // 依赖名compile 'x:y:z'中的包名x
+    artifactId = 'common'        // 依赖名compile 'x:y:z'中的项目名y
+    publishVersion = '1.0.0'          // 依赖名compile 'x:y:z'中的版本号z
+    desc = 'common'            // 对该开源组件的说明
+    website = 'https://github.com/JK2DOG/AndroidCommonUtils'  // VCS地址，即填写项目上传的Github地址
+}
